@@ -1,0 +1,23 @@
+﻿Requirements Doc
+
+
+Goal:
+Build employee salary management software for an organization with 10,000 employees. The software targets the HR Manager persona to eliminate reliance on tedious Excel spreadsheets across multiple countries by providing centralized salary management and data-driven insights.
+Scope:
+ACME org's HR team currently manages salary data for 10,000 employees across multiple countries via tedious Excel spreadsheets. They need web-based software to manage salary data and answer complex questions about how the org pays people.
+Technical Constraints:
+1. Backend: Python (FastAPI), Relational database (SQLite/PostgreSQL), Unit Testing (Pytest)
+2. UI: ReactJS, Component library (AntDesign), Unit Testing (Vitest)
+3. Seeding: Seed script with 10,000 synthetic employee records
+4. Readiness & Approach: Fully functional deployed software with high code quality standards, comprehensive test coverage, structured code architecture, and a video demo presentation
+Features:
+1. Account Login page - without authentication for demo
+2. Dashboard Landing Page
+3. Employees - Salary management page to view salaries of employees. Search, filter by month/country/paid. Action to export excel data. Tabular view.
+4. Salary Analytics
+5. Ask Salary Data (AI) 
+
+
+Left Out and Why:
+1. Employee Salary Profile - Omitted from initial scope to prioritize high-level organizational analytics and tabular views for the HR manager dashboard.
+2. Import Salary data and validation - For phase 1, the data will be read from database
