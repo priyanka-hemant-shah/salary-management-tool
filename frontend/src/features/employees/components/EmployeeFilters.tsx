@@ -1,16 +1,13 @@
 import React from 'react'
-import { Card, Input, Select, Button, Space, Typography, Tooltip } from 'antd'
+import { Card, Input, Select, Button, Space, Tooltip } from 'antd'
 import {
   SearchOutlined,
-  FilterOutlined,
   ReloadOutlined,
   DownloadOutlined,
   GlobalOutlined,
   CalendarOutlined,
   CheckCircleOutlined,
 } from '@ant-design/icons'
-
-const { Text } = Typography
 
 interface EmployeeFiltersProps {
   search: string

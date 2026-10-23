@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Table, Tag, Typography, Avatar, Button, Space, Tooltip } from 'antd'
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table'
-import { EyeOutlined, UserOutlined } from '@ant-design/icons'
+import { EyeOutlined } from '@ant-design/icons'
 import type { EmployeeListItem, PaginationMeta } from '../types'
 
 const { Text } = Typography
