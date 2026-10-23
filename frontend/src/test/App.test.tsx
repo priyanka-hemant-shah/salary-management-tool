@@ -9,9 +9,28 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ConfigProvider } from 'antd'
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import App from '../App'
 import { theme } from '../lib/theme'
+
+// Mock dashboardApi for App integration tests
+vi.mock('../features/dashboard/api', () => ({
+  dashboardApi: {
+    getSummary: vi.fn().mockResolvedValue({
+      headcount: 10000,
+      total_salary_spend: 95000000,
+      avg_salary: 9500,
+      active_countries: 10,
+      paid_ratio: 98,
+      salary_month: '2024-03-01',
+      currency: 'USD',
+    }),
+    getSalaryByCountry: vi.fn().mockResolvedValue({ items: [], salary_month: '2024-03-01', currency: 'USD' }),
+    getSalaryTrend: vi.fn().mockResolvedValue({ items: [], currency: 'USD' }),
+    getRecentChanges: vi.fn().mockResolvedValue({ items: [] }),
+    getAvailableMonths: vi.fn().mockResolvedValue([]),
+  },
+}))
 
 function renderApp(initialRoute = '/dashboard') {
   const queryClient = new QueryClient({
@@ -65,7 +84,7 @@ describe('PR 8 Design System & AppShell Tests', () => {
     renderApp('/login')
     const button = screen.getByRole('button', { name: /Launch Demo Workspace/i })
     await userEvent.click(button)
-    expect(screen.getByText('Executive Dashboard')).toBeInTheDocument()
+    expect(screen.getByText('Executive Salary Dashboard')).toBeInTheDocument()
   })
 
   it('navigates to employees directory when link is clicked', async () => {
