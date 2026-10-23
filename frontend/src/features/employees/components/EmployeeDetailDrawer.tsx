@@ -6,18 +6,12 @@ import {
   Table,
   Tag,
   Avatar,
-  Space,
   Skeleton,
   Divider,
   Alert,
 } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
-import {
-  UserOutlined,
-  CalendarOutlined,
-  CheckCircleOutlined,
-  BankOutlined,
-} from '@ant-design/icons'
+import { CheckCircleOutlined } from '@ant-design/icons'
 import { useQuery } from '@tanstack/react-query'
 import { employeesApi } from '../api'
 import type { EmployeeListItem, SalaryRecordOut } from '../types'
