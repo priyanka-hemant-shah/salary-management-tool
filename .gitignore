@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+.venv/
+env/
+venv/
+
+# Build artifacts
+dist/
+build/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases & env
+*.db
+*.sqlite3
+.env
+.env.local
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
