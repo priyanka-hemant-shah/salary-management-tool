@@ -28,8 +28,9 @@ global.ResizeObserver = class ResizeObserver {
   disconnect() {}
 }
 
-// Mock window.scrollTo
+// Mock window.scrollTo and scrollIntoView
 window.scrollTo = () => {}
+window.HTMLElement.prototype.scrollIntoView = () => {}
 
 // Mock getComputedStyle for pseudo-elements (Ant Design table scrollbar check)
 const originalGetComputedStyle = window.getComputedStyle
