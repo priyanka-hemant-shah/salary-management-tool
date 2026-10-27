@@ -197,7 +197,7 @@ describe('PR 10 Employee Directory UI Tests', () => {
       },
       { timeout: 8000 }
     )
-  }, 15000)
+  })
 
   it('triggers excel export when clicking Export button', async () => {
     renderEmployees()

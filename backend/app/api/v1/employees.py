@@ -16,7 +16,7 @@ doesn't mistake the literal path segments for an integer employee id.
 import io
 import math
 from datetime import date
-from typing import Optional
+from typing import Any, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.responses import StreamingResponse
@@ -167,6 +167,18 @@ async def list_employees(
 # GET /employees/export   ← must be before /{id}
 # ---------------------------------------------------------------------------
 
+def sanitize_excel_cell(value: Any) -> Any:
+    """
+    Neutralize CSV / Excel formula injection (CWE-1236).
+    If a string starts with =, +, -, @, \t, or \r, prefix with a single quote (')
+    to prevent spreadsheet software from executing it as a formula.
+    """
+    if isinstance(value, str) and value:
+        if value[0] in ("=", "+", "-", "@", "\t", "\r"):
+            return f"'{value}"
+    return value
+
+
 @router.get("/export", summary="Export employees to Excel")
 async def export_employees(
     search: Optional[str] = Query(None),
@@ -179,6 +191,7 @@ async def export_employees(
     Download all matching employees (with salary for the requested month)
     as an Excel (.xlsx) file.  Applies the same filters as the list endpoint
     but without pagination — the complete result set is exported.
+    Values are automatically sanitized against formula injection (CWE-1236).
     """
     salary_date = _parse_month(month) if month else await _latest_salary_month(db)
     base_q, _ = _build_list_query(
@@ -212,17 +225,17 @@ async def export_employees(
 
     for emp, sr_row in rows:
         ws.append([
-            emp.employee_code,
-            emp.first_name,
-            emp.last_name,
-            emp.email,
-            emp.department,
-            emp.job_title,
-            emp.country,
+            sanitize_excel_cell(emp.employee_code),
+            sanitize_excel_cell(emp.first_name),
+            sanitize_excel_cell(emp.last_name),
+            sanitize_excel_cell(emp.email),
+            sanitize_excel_cell(emp.department),
+            sanitize_excel_cell(emp.job_title),
+            sanitize_excel_cell(emp.country),
             emp.hire_date.isoformat() if emp.hire_date else "",
             salary_date.strftime("%b %Y"),
             sr_row.base_salary if sr_row else "",
-            sr_row.currency if sr_row else "",
+            sanitize_excel_cell(sr_row.currency if sr_row else ""),
             "Yes" if (sr_row and sr_row.is_paid) else ("No" if sr_row else ""),
             sr_row.paid_date.isoformat() if (sr_row and sr_row.paid_date) else "",
         ])
