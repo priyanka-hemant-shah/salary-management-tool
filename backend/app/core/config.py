@@ -1,7 +1,7 @@
 """Application configuration loaded from environment variables."""
 
 from functools import lru_cache
-from typing import List
+from typing import List, Union
 
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -23,16 +23,21 @@ class Settings(BaseSettings):
     database_url: str = "sqlite+aiosqlite:///./acme_salary.db"
 
     # CORS
-    cors_origins: List[str] = ["http://localhost:5173", "http://localhost:3000"]
+    cors_origins: Union[List[str], str] = ["http://localhost:5173", "http://localhost:3000"]
 
-    @field_validator("cors_origins", mode="before")
+    @field_validator("cors_origins")
     @classmethod
     def parse_cors_origins(cls, v):
         if isinstance(v, str):
             v = v.strip()
             if v.startswith("["):
                 import json
-                return json.loads(v)
+                try:
+                    return json.loads(v)
+                except Exception:
+                    pass
+            if v == "*":
+                return ["*"]
             return [x.strip() for x in v.split(",") if x.strip()]
         return v
 
