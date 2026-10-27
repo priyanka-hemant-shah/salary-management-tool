@@ -46,6 +46,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({ summary, loading }) => {
             boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
             height: '100%',
           }}
+          bodyStyle={{paddingLeft: 10, paddingRight: 10}}
         >
           {loading ? (
             <Skeleton active paragraph={{ rows: 2 }} />
@@ -96,6 +97,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({ summary, loading }) => {
             boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
             height: '100%',
           }}
+          bodyStyle={{paddingLeft: 10, paddingRight: 10}}
         >
           {loading ? (
             <Skeleton active paragraph={{ rows: 2 }} />
@@ -121,7 +123,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({ summary, loading }) => {
                   <DollarOutlined />
                 </div>
               </div>
-              <div style={{ fontSize: 26, fontWeight: 700, color: '#111827', marginTop: 6, lineHeight: 1.2 }}>
+              <div style={{ fontSize: 25, fontWeight: 700, color: '#111827', marginTop: 6, lineHeight: 1.2 }}>
                 {formatCurrency(summary?.total_salary_spend)}
               </div>
               <div style={{ marginTop: 10 }}>
@@ -142,6 +144,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({ summary, loading }) => {
             boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
             height: '100%',
           }}
+          bodyStyle={{paddingLeft: 10, paddingRight: 10}}
         >
           {loading ? (
             <Skeleton active paragraph={{ rows: 2 }} />
@@ -167,7 +170,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({ summary, loading }) => {
                   <RiseOutlined />
                 </div>
               </div>
-              <div style={{ fontSize: 26, fontWeight: 700, color: '#111827', marginTop: 6, lineHeight: 1.2 }}>
+              <div style={{ fontSize: 25, fontWeight: 700, color: '#111827', marginTop: 6, lineHeight: 1.2 }}>
                 {formatCurrency(summary?.avg_salary)}
               </div>
               <div style={{ marginTop: 10 }}>
@@ -188,6 +191,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({ summary, loading }) => {
             boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
             height: '100%',
           }}
+          bodyStyle={{paddingLeft: 10, paddingRight: 10}}
         >
           {loading ? (
             <Skeleton active paragraph={{ rows: 2 }} />
@@ -213,7 +217,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({ summary, loading }) => {
                   <CheckCircleOutlined />
                 </div>
               </div>
-              <div style={{ fontSize: 26, fontWeight: 700, color: '#111827', marginTop: 6, lineHeight: 1.2 }}>
+              <div style={{ fontSize: 25, fontWeight: 700, color: '#111827', marginTop: 6, lineHeight: 1.2 }}>
                 {summary?.paid_ratio ? `${summary.paid_ratio}%` : '0%'}
               </div>
               <div style={{ marginTop: 10 }}>

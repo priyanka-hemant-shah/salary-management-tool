@@ -196,15 +196,15 @@ def classify_question(question: str, default_currency: str = "USD") -> QuerySpec
         )
 
     # 6. Total spend / cost queries
-    if any(k in q_lower for k in ["total", "spend", "cost", "payroll", "budget", "payout", "bill", "expenditure"]):
-        if "by country" in q_lower or "each country" in q_lower:
+    if any(k in q_lower for k in ["total", "spend", "cost", "payroll", "budget", "payout", "bill", "expenditure", "breakdown", "distribution"]):
+        if "by country" in q_lower or "each country" in q_lower or ("country" in q_lower and "breakdown" in q_lower):
             return QuerySpec(
                 query_type=QueryType.TOP_COUNTRIES,
                 department=department,
                 currency=curr,
                 limit=10,
             )
-        if "by department" in q_lower or "each department" in q_lower:
+        if "by department" in q_lower or "each department" in q_lower or ("department" in q_lower and "breakdown" in q_lower):
             return QuerySpec(
                 query_type=QueryType.TOP_DEPARTMENTS,
                 country=country,

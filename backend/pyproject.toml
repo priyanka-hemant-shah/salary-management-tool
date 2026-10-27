@@ -37,6 +37,10 @@ asyncio_mode = "auto"
 testpaths = ["tests"]
 addopts = "--cov=app --cov-report=term-missing --cov-fail-under=0"
 
+[tool.coverage.run]
+source = ["app"]
+concurrency = ["thread", "greenlet"]
+
 [tool.hatch.build.targets.wheel]
 packages = ["app"]
 
