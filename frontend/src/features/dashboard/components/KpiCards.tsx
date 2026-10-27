@@ -46,7 +46,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({ summary, loading }) => {
             boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
             height: '100%',
           }}
-          bodyStyle={{paddingLeft: 10, paddingRight: 10}}
+          bodyStyle={{paddingLeft: 8, paddingRight: 8}}
         >
           {loading ? (
             <Skeleton active paragraph={{ rows: 2 }} />
@@ -97,7 +97,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({ summary, loading }) => {
             boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
             height: '100%',
           }}
-          bodyStyle={{paddingLeft: 10, paddingRight: 10}}
+          bodyStyle={{paddingLeft: 8, paddingRight: 8}}
         >
           {loading ? (
             <Skeleton active paragraph={{ rows: 2 }} />
@@ -144,7 +144,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({ summary, loading }) => {
             boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
             height: '100%',
           }}
-          bodyStyle={{paddingLeft: 10, paddingRight: 10}}
+          bodyStyle={{paddingLeft: 8, paddingRight: 8}}
         >
           {loading ? (
             <Skeleton active paragraph={{ rows: 2 }} />
@@ -191,7 +191,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({ summary, loading }) => {
             boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
             height: '100%',
           }}
-          bodyStyle={{paddingLeft: 10, paddingRight: 10}}
+          bodyStyle={{paddingLeft: 8, paddingRight: 8}}
         >
           {loading ? (
             <Skeleton active paragraph={{ rows: 2 }} />
