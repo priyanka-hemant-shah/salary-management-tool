@@ -193,9 +193,16 @@ async def seed(drop: bool = True) -> None:
         for emp_id, cdata in employee_country_map:
             _, currency, _ = cdata
             for i, month in enumerate(SALARY_MONTHS):
-                is_paid = month < CURRENT_MONTH
+                # Realistic disbursement: latest month has ~8% pending/unpaid, previous has ~3%
+                if i == len(SALARY_MONTHS) - 1:
+                    is_paid = rng.random() >= 0.08
+                elif i == len(SALARY_MONTHS) - 2:
+                    is_paid = rng.random() >= 0.03
+                else:
+                    is_paid = rng.random() >= 0.01
+
                 paid_date = (
-                    month + timedelta(days=rng.randint(25, 32))
+                    month + timedelta(days=rng.randint(25, 28))
                     if is_paid
                     else None
                 )

@@ -6,8 +6,10 @@
  */
 import axios from 'axios'
 
+const apiOrigin = import.meta.env.VITE_API_URL || ''
+
 export const apiClient = axios.create({
-  baseURL: '/api/v1',
+  baseURL: `${apiOrigin}/api/v1`,
   headers: {
     'Content-Type': 'application/json',
   },

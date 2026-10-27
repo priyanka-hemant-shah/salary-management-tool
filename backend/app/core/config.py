@@ -29,8 +29,11 @@ class Settings(BaseSettings):
     @classmethod
     def parse_cors_origins(cls, v):
         if isinstance(v, str):
-            import json
-            return json.loads(v)
+            v = v.strip()
+            if v.startswith("["):
+                import json
+                return json.loads(v)
+            return [x.strip() for x in v.split(",") if x.strip()]
         return v
 
     # AI / Gemini
